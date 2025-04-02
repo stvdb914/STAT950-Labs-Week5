@@ -1,0 +1,45 @@
+```{r other_plots}
+
+#Scatter plot of age vs height
+  scatterPlot <- ggplot(data=fevData, aes(x = age, y = height)) +
+  geom_point()
+  scatterPlot
+  
+#Colour by groups
+  scatterPlot <- ggplot(data = fevData, aes(x = age, y = height, colour = sex)) +
+  geom_point()
+  scatterPlot
+  
+#Customising colours
+  myColours <- c("#ffb366", "blue")
+  scatterPlot <- ggplot(data = fevData, aes(x = age, y = height, colour = sex)) +
+  geom_point() + scale_color_manual(values = myColours)
+  scatterPlot
+
+#Use color brewer
+  scatterPlot <- ggplot(data = fevData, aes(x = age, y = height, colour = sex)) +
+  geom_point() + scale_color_brewer(palette = "Accent")
+  scatterPlot
+# Brewer colours are Accent,  Dark2 (colour blind friendly), Paired (colour blind friendly), Pastel1
+# Pastel2, Set1, Set2 (colour blind friendly), Set3
+
+  #Add a regression line
+  scatterPlot <- ggplot(data = fevData, aes(x = age, y = height, colour = sex, fill = sex)) +
+    geom_point() + 
+    geom_smooth(method = "loess", se = F) + 
+    scale_color_brewer(palette = "Dark2") +
+    scale_fill_brewer(palette = "Dark2")
+  scatterPlot
+  
+#Add some labels
+  scatterPlot <- ggplot(data = fevData, aes(x = age, y = height, colour = sex, fill = sex)) +
+    geom_point() + 
+    geom_smooth(method = "loess", se = T) + 
+    scale_color_brewer(palette = "Dark2") +
+    scale_fill_brewer(palette = "Dark2") +
+    labs(x = "Age (years)",
+       y = "Height (cm)") +
+  theme_classic()
+  scatterPlot
+  
+```

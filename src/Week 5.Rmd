@@ -1,0 +1,30 @@
+---
+title: "STAT950_Week5"
+author: "Sharon Van Den Berg"
+date: "2025-04-02"
+
+knit: (function(input, encoding) {
+  rmarkdown::render(input,
+                    encoding = "UTF-8",
+                    output_dir = "../report",
+                    knit_root_dir = rprojroot::find_rstudio_root_file())})
+                    
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r child1, child = './src/part1.R'}
+```
+
+```{r child2, child = './src/part2.Rmd'}
+```
+
+```{r child3, child = './src/part3.Rmd'}
+```
+
+```{r child4, child = './src/part4.Rmd'}
+  
+```

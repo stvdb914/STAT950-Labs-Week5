@@ -1,0 +1,10 @@
+```{r other_exercises}
+  #This also needs some colours for the chart
+  violin <- ggplot(data = fevData, aes(y = height, x = sex)) + geom_violin() 
+  violin
+  
+  #This needs some colours for tomorrow
+  violin_Boxplot <- violin + geom_boxplot()
+  violin_Boxplot
+
+```

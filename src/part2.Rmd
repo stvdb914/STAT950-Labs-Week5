@@ -1,0 +1,96 @@
+```{r loadlibrary, echo=FALSE}
+library(tidyverse)
+library(ggplot2)
+
+```
+```{r ggplots}
+glimpse(fevData)
+plot1 <- ggplot(fevData)
+
+plot1 <- ggplot(fevData, aes(x = age))
+plot1
+
+#Add a geometry layer
+plot1 <- ggplot(fevData, aes(x = age)) +
+  geom_histogram()
+plot1
+
+#Try and change the bin width
+plot1 <- ggplot(fevData, aes(x = age)) + geom_histogram(binwidth = 0.1)
+plot1
+
+#Fill the smoking status by age with smoke
+plot1 <- ggplot(fevData, aes(x = age, fill=smoke)) + geom_histogram(alpha=1, binwidth = 1)
+plot1
+
+#Add some labels
+plot1 <- ggplot(fevData, aes(x = age, fill = smoke)) + 
+  geom_histogram(alpha = .5, binwidth = 1) +
+  labs(x = "Age of the participants in years",
+       y = "Count of participants",
+       title = "Histogram of smokers and non smokers per age group",
+       fill = "Smoking Status")
+plot1
+
+#Use a theme
+plot1 <- plot1 + theme_bw()
+plot1
+
+#A different way
+plot1 <- ggplot(fevData, aes(x = age, fill = smoke)) + 
+  geom_histogram(alpha = 0.45, binwidth = 1) + 
+  labs(x = "Age (years)",
+       y = "Count", 
+       title = "Histogram of age by smoking status",
+       fill = "Smoking status",
+       caption = "FEV data from Tager et al (1979)") +
+  theme_void()
+plot1
+
+#Facets
+plot1 <- ggplot(fevData, aes(x = age, fill = smoke)) + 
+  geom_histogram(alpha = 0.45, binwidth = 1) + 
+  facet_wrap(~smoke) +
+  labs(x = "Age (years)",
+       y = "Count", 
+       title = "Histogram of age by smoking status",
+       fill = "Smoking status",
+       caption = "FEV data from Tager et al (1979)") +
+  theme_minimal()
+plot1
+
+#Stratified by sex
+plot1 <- ggplot(fevData, aes(x = age, fill = smoke)) + 
+  geom_histogram(alpha = 0.45, binwidth = 1) + 
+  facet_wrap(~ sex) +
+  labs(x = "Age (years)",
+       y = "Count", 
+       title = "Histogram of age by smoking status and sex",
+       fill = "Smoking status",
+       caption = "FEV data from Tager et al (1979)") +
+  theme_minimal()
+plot1
+
+#Boxplot
+plot1 <- ggplot(fevData, aes(x = age, y = smoke, fill = smoke)) + 
+  geom_boxplot(alpha = 0.45) + 
+  facet_wrap(~sex) +
+  labs(x = "Age (years)",
+       y = "Smoking Status", 
+       title = "Boxplots of age by smoking status and sex",
+       caption = "FEV data from Tager et al (1979)") +
+  theme_minimal() + theme(legend.position = "none")
+plot1
+
+#Density Plot
+plot1 <- ggplot(fevData, aes(x = age, fill = smoke)) + 
+  geom_density(alpha = 0.45) + 
+  facet_wrap(~sex) +
+  labs(x = "Age (years)",
+       y = "Density", 
+       title = "Density Plot of age by smoking status and sex",
+       fill =  "Smoking Status",
+       caption = "FEV data from Tager et al (1979)") +
+  theme_minimal()
+plot1
+```
